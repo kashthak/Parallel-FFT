@@ -2,25 +2,35 @@
 #include <vector>
 #include <random>
 #include <chrono>
-
 // Fill the vector with random floating point values
 void fill_vector(std::vector<float>& v)
 {
-    // TODO: initialize a random number generator
-    // TODO: fill the vector with random values
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    int n= v.size();
+    for(int i=0;i<n; i++){
+        v[i]=(float)mt();
+    }
 }
 
 // Multiply each element by a constant
 void scale_vector(std::vector<float>& v, float scale)
 {
+    int n=v.size();
+    for(int i=0;i<n;i++){
+    v[i] = v[i] * scale;
     // TODO: loop through the vector and scale each element
+    }
 }
 
 // Compute the sum of all elements
 float sum_vector(const std::vector<float>& v)
 {
     float sum = 0.0f;
-
+    int n = v.size();
+    for(int i =0; i<n;i++){
+        sum+=v[i];
+    }
     // TODO: compute sum of all elements
 
     return sum;
