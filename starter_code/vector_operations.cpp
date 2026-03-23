@@ -9,7 +9,7 @@ void fill_vector(std::vector<float>& v)
     std::mt19937 mt(rd());
     int n= v.size();
     for(int i=0;i<n; i++){
-        v[i]=(float)mt();
+        v[i]=(float)mt()/(float)mt.max();
     }
 }
 
