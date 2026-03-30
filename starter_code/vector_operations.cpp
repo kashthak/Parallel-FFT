@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <random>
@@ -6,14 +7,18 @@
 // Fill the vector with random floating point values
 void fill_vector(std::vector<float>& v)
 {
-    // TODO: initialize a random number generator
-    // TODO: fill the vector with random values
+    for(int i=0;i<v.size();i++){
+       v[i]=static_cast<float>(rand()) / RAND_MAX;
+    }
 }
 
 // Multiply each element by a constant
 void scale_vector(std::vector<float>& v, float scale)
 {
-    // TODO: loop through the vector and scale each element
+    for(int i=0;i<v.size();i++){
+
+     v[i]=v[i]*scale;
+}
 }
 
 // Compute the sum of all elements
@@ -21,8 +26,11 @@ float sum_vector(const std::vector<float>& v)
 {
     float sum = 0.0f;
 
-    // TODO: compute sum of all elements
 
+    for(int i=0;i<v.size();i++)
+{
+   sum=sum+v[i];
+}
     return sum;
 }
 
