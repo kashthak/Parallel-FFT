@@ -21,7 +21,7 @@ git pull origin Lab2
 Create your working branch:
 
 ```bash
-git checkout -b <username>/lab2
+git checkout -b <username>_lab2
 ```
 
 ---
