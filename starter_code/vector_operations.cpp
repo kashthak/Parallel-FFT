@@ -13,8 +13,10 @@ void fill_vector(std::vector<float>& v)
 }
 
 // Multiply each element by a constant
+
 void scale_vector(std::vector<float>& v, float scale)
 {
+    
     for(int i=0;i<v.size();i++){
 
      v[i]=v[i]*scale;
@@ -24,7 +26,9 @@ void scale_vector(std::vector<float>& v, float scale)
 // Compute the sum of all elements
 float sum_vector(const std::vector<float>& v)
 {
+   
     float sum = 0.0f;
+   #pragma omp parallel for reduction(+ : sum)
 
 
     for(int i=0;i<v.size();i++)
