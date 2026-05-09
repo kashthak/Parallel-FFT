@@ -1,0 +1,9 @@
+map
+reduction
+scan
+map.exe
+reduction.exe
+scan.exe
+*.o
+*.out
+*.exe
