@@ -236,49 +236,6 @@ Example:
 double tolerance = 1e-6;
 ```
 
-## Reflection Questions
-
-Answer these questions after completing the code.
-
-### Map
-
-1. What makes the map loop easy to parallelize?
-2. Does any iteration need the result of another iteration?
-3. What would make a map loop unsafe?
-
-### Reduction
-
-1. What dependency exists in the reduction?
-2. Why can partial results be computed independently?
-3. Why does associativity matter?
-4. Why might floating-point reduction results differ slightly between sequential and parallel versions?
-
-### Scan
-
-1. Why is the direct sequential scan loop not safe to parallelize with a simple `parallel for`?
-2. What does each output element depend on?
-3. How does the staged scan approach change the computation structure?
-4. Why is scan an important pattern for future algorithms?
-
-### Overall
-
-1. Which pattern was easiest to parallelize?
-2. Which pattern required the most restructuring?
-3. How is Lab 4 different from Lab 3?
-4. Why is recognizing computation structure important before writing parallel code?
-
-## Submission Checklist
-
-Before submitting, make sure you have:
-
-- Implemented the map exercise.
-- Implemented the reduction exercise.
-- Implemented the scan exercise.
-- Verified sequential and parallel results.
-- Recorded simple timing observations.
-- Answered the reflection questions.
-- Explained the dependency structure of each pattern.
-
 ## Final Takeaway
 
 Parallel programming is not just about adding threads.
