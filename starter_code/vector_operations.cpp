@@ -19,19 +19,19 @@ void fill_vector(std::vector<float>& v)
 // Multiply each element by a constant
 void scale_vector(std::vector<float>& v, float scale)
 {
-    // TODO: parallelize this loop using OpenMP
     #pragma omp parallel for
     for (size_t i = 0; i < v.size(); i++)
     {
         v[i] *= scale;
     }
 }
+
 // Compute the sum of all elements
 float sum_vector(const std::vector<float>& v)
 {
     float sum = 0.0f;
+
     #pragma omp parallel for reduction(+ : sum)
-    // TODO: parallelize this loop (first try naive, then fix using reduction)
     for (size_t i = 0; i < v.size(); i++)
     {
         sum += v[i];
