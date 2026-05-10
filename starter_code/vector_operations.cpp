@@ -19,8 +19,8 @@ void fill_vector(std::vector<float>& v)
 // Multiply each element by a constant
 void scale_vector(std::vector<float>& v, float scale)
 {
-    // TODO: parallelize this loop using OpenMP
-
+    // Parallelize this loop using OpenMP
+    #pragma omp parallel for
     for (size_t i = 0; i < v.size(); i++)
     {
         v[i] *= scale;
@@ -31,9 +31,8 @@ void scale_vector(std::vector<float>& v, float scale)
 float sum_vector(const std::vector<float>& v)
 {
     float sum = 0.0f;
-
-    // TODO: parallelize this loop (first try naive, then fix using reduction)
-
+    // Parallelize using reduction to avoid race conditions
+    #pragma omp parallel for reduction(+ : sum)
     for (size_t i = 0; i < v.size(); i++)
     {
         sum += v[i];
