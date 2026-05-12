@@ -22,8 +22,9 @@ void sequential_map(const std::vector<double>& input, std::vector<double>& outpu
 
 void parallel_map(const std::vector<double>& input, std::vector<double>& output) {
     // TODO: Implement the parallel map version.
+    #pragma omp parallel for
     for (int i = 0; i < static_cast<int>(input.size()); i++) {
-        output[i] = 0.0;
+        output[i] = input[i] * input[i] + 3.0;
     }
 }
 

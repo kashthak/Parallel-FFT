@@ -28,8 +28,42 @@ void sequential_scan(const std::vector<int>& input, std::vector<int>& output) {
 void parallel_scan(const std::vector<int>& input, std::vector<int>& output) {
     // TODO: Implement the parallel scan version.
     // Think carefully about the dependency between neighboring outputs.
-    for (int i = 0; i < static_cast<int>(input.size()); i++) {
-        output[i] = 0;
+    //threads are taken to be 4
+    std::vector<int> chunk_sums(4);
+    std::vector<int> offsets(4);
+    int chunk_size = input.size()/4;
+    #pragma omp parallel num_threads(4)
+    {
+        int thread_id = omp_get_thread_num(); 
+        int start = thread_id*chunk_size;
+        int end = (thread_id == 3) ? input.size() : start + chunk_size;
+        output[start] = input[start];
+        for(int i = start + 1; i < end; i++)
+        {
+            output[i] = output[i - 1] + input[i];
+        }
+
+        chunk_sums[thread_id] = output[end - 1];
+    }
+    offsets[0] = 0;
+
+    for(int i = 1; i < 4; i++)
+    {
+        offsets[i] = offsets[i - 1] + chunk_sums[i - 1];
+    }
+    #pragma omp parallel num_threads(4)
+    {
+        int thread_id = omp_get_thread_num();
+
+        int start = thread_id * chunk_size;
+        int end = start + chunk_size;
+
+        int offset = offsets[thread_id];
+
+        for(int i = start; i < end; i++)
+        {
+            output[i] += offset;
+        }
     }
 }
 

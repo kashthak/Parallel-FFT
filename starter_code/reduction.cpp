@@ -28,8 +28,9 @@ double parallel_reduction(const std::vector<double>& values) {
     double sum = 0.0;
 
     // TODO: Implement the parallel reduction version.
+    #pragma omp parallel for reduction(+:sum)
     for (int i = 0; i < static_cast<int>(values.size()); i++) {
-        sum = values[i];
+        sum += values[i];
     }
 
     return sum;
